@@ -1,2 +1,0 @@
-# waluty
-Me and Dobrosław
