@@ -20,7 +20,7 @@ cabal build
 To display all available rates:
 
 ```
-cabal run
+cabal run currency-rates <base currency> <currencies to compare>
 ```
 
 To display rates for specific currencies by code or country (case-insensitive, matches whole words):
