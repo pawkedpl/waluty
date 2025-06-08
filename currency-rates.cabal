@@ -1,18 +1,60 @@
-cabal-version:   3.12
+cabal-version:   3.8
 name:            currency-rates
 version:         0.1.0.0
-license:         NONE
+license:         BSD-3-Clause
 author:          wyz3r0
 maintainer:      dobroszek.d@gmail.com
 build-type:      Simple
 extra-doc-files: CHANGELOG.md
 
 common warnings
-    ghc-options: -Wall
+  ghc-options: -Wall
 
 executable currency-rates
-    import:           warnings
-    main-is:          Main.hs
-    build-depends:    base ^>=4.17.2.1, http-conduit, aeson, text, Chart, Chart-diagrams, pandoc-types, bytestring, pandoc, process, time, directory
-    hs-source-dirs:   app
-    default-language: Haskell2010
+  main-is:          Main.hs
+  hs-source-dirs:   app
+  default-language: Haskell2010
+  build-depends:
+    base >=4.17 && <4.18,
+    http-conduit,
+    aeson,
+    text,
+    Chart,
+    Chart-diagrams,
+    pandoc-types,
+    bytestring,
+    pandoc,
+    process,
+    time,
+    directory,
+    filepath
+
+executable change
+  main-is:          ChangeMain.hs
+  hs-source-dirs:   app
+  default-language: Haskell2010
+  build-depends:
+    base >=4.17 && <4.18,
+    http-conduit,
+    aeson,
+    text,
+    bytestring,
+    process,
+    time,
+    directory,
+    filepath
+executable chart
+  main-is:          Chart.hs
+  hs-source-dirs:   app
+  default-language: Haskell2010
+  build-depends:
+    base >=4.17 && <4.18,
+    http-conduit,
+    aeson,
+    text,
+    Chart,
+    Chart-cairo,
+    time,
+    bytestring,
+    directory,
+    filepath
