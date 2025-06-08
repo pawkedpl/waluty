@@ -86,10 +86,15 @@ saveReportAsTeX path doc _ = do
         texLinesFiltered = filter (\l -> not (any (`T.isInfixOf` l)
             [T.pack "\\endhead", T.pack "\\endfirsthead", T.pack "\\endfoot", T.pack "\\endlastfoot"])) texLines
         texBodyFinal = T.unlines texLinesFiltered
-        preamble = T.pack $ unlines
-            ["\\documentclass{article}",
-             "\\usepackage{booktabs}",
-             "\\begin{document}"]
+    let preamble = T.pack (unlines
+            [ "\\documentclass{article}"
+            , "\\usepackage[utf8]{inputenc}"
+            , "\\usepackage[T1]{fontenc}"
+            , "\\usepackage[polish]{babel}"
+            , "\\usepackage{booktabs}"
+            , "\\usepackage{lmodern}"
+            , "\\begin{document}"
+            ])
         postamble = T.pack "\\end{document}\n"
         fullTex = T.concat [preamble, T.pack "\n", texBodyFinal, T.pack "\n", postamble]
     T.writeFile path fullTex
