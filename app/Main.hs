@@ -165,11 +165,8 @@ main = do
                                   (r:_) -> [r { mid = 1.0 }]
                                   []    -> []
 
-                -- Adjust all other rates (including PLN) by dividing by base currency factor,
-                -- but for PLN multiply factor * PLN_rate instead of dividing
-                others = [ if map toUpper (code r) == "PLN"
-                           then r { mid = factor * mid r }
-                           else r { mid = mid r / factor }
+                -- Adjust all other rates (including PLN) by dividing by base currency factor
+                others = [ r { mid = mid r / factor }
                          | r <- filteredWithPLN, map toUpper (code r) /= baseCurrency ]
 
                 adjustedRates = baseRateEntry ++ others
